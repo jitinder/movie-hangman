@@ -60,17 +60,17 @@ public class Game {
             System.out.println("Wrong Guesses: " + guessManager.getWrongNumGuesses() + "/" + MAX_WRONG_GUESSES + " | Guesses so far: " +guessManager.getGuessedChars());
         }
 
-        if(guessManager.getWrongNumGuesses() != MAX_WRONG_GUESSES && incompleteTitle.equalsIgnoreCase(movieTitle)){
+        if(guessManager.getWrongNumGuesses() != MAX_WRONG_GUESSES && isCompletelyGuessed(incompleteTitle, movieTitle)){
             System.out.println("Congrats, you got the movie right!");
         } else {
             System.out.println("You lost, Try again?");
-
+            System.out.println("The movie was: " +movieTitle);
         }
     }
 
     private boolean isCompletelyGuessed(String incompleteTitle, String movieTitle){
         String temp = incompleteTitle.replaceAll("[|]", " ");
-        return incompleteTitle.equalsIgnoreCase(movieTitle);
+        return temp.equalsIgnoreCase(movieTitle);
     }
 
     private int tellMode(String s){
