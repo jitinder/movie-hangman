@@ -16,11 +16,6 @@ public class APIHandler {
     public static final int RESPONSE_ID_HOLLYWOOD = 1;
     public static final int RESPONSE_ID_BOLLYWOOD = 2;
 
-    public static void main(String[] args) throws IOException {
-        APIHandler handler = new APIHandler();
-        System.out.println(handler.getParsedMovieList(handler.getResponse(1)));
-    }
-
     public String getResponse(int responseID) throws IOException{
         int hollywoodPages = 100;
         int bollywoodPages = 100;
