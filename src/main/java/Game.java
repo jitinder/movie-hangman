@@ -114,10 +114,17 @@ public class Game {
             response = apiHandler.getResponse(mode);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("ERROR: Problem fetching movie data");
         }
 
         ArrayList<String> movieList = apiHandler.getParsedMovieList(response);
-        int randomIndex = random.nextInt(movieList.size());
+        int randomIndex = 0;
+        try {
+            randomIndex = random.nextInt(movieList.size());
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            System.out.println("ERROR: Problem fetching movie data");
+        }
 
         if(mode == MODE_HOLLYWOOD){
             System.out.println("You've chosen Hollywood, here is your movie:");

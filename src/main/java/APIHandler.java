@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class APIHandler {
     private final String END_POINT_URL = "https://api.themoviedb.org/3/discover/movie";
@@ -15,12 +16,20 @@ public class APIHandler {
     public static final int RESPONSE_ID_HOLLYWOOD = 1;
     public static final int RESPONSE_ID_BOLLYWOOD = 2;
 
+    public static void main(String[] args) throws IOException {
+        APIHandler handler = new APIHandler();
+        System.out.println(handler.getParsedMovieList(handler.getResponse(1)));
+    }
+
     public String getResponse(int responseID) throws IOException{
+        int hollywoodPages = 100;
+        int bollywoodPages = 100;
+        Random random = new Random();
         URL url;
         if(responseID == RESPONSE_ID_HOLLYWOOD){
-            url = new URL(END_POINT_URL + "?api_key=" +API_KEY+ "&region=" + "US");
+            url = new URL(END_POINT_URL + "?api_key=" +API_KEY+ "&region=" + "US"+ "&with_original_language=" + "en" + "&page=" +random.nextInt(hollywoodPages+1));
         } else if(responseID == RESPONSE_ID_BOLLYWOOD){
-            url = new URL(END_POINT_URL + "?api_key=" +API_KEY+ "&region=" + "IN" + "&with_original_language=" +"hi");
+            url = new URL(END_POINT_URL + "?api_key=" +API_KEY+ "&region=" + "IN" + "&with_original_language=" + "hi" + "&page=" +random.nextInt(bollywoodPages+1));
         } else {
             return null;
         }
